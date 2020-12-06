@@ -58,7 +58,7 @@ export const EmployeeGrid = (props) => {
             striped
             bordered
             entriesOptions={[15, 30, 50, 100]}
-            className="primary"
+            className="#00796b"
             entries={15}
             pagesAmount={5}
             data={datatable}

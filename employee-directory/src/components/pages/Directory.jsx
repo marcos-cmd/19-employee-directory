@@ -7,9 +7,9 @@ const DirectoryPage = () => {
     return (
         <MDBContainer fluid>
             <MDBRow>
-                <MDBCol className="pt-5 pb-5" style={{ color: "#2d2d2d", backgroundColor: "f7f6f0" }}>
+                <MDBCol className="pt-5 pb-5" style={{ color: "#00796b", backgroundColor: "f7f6f0" }}>
                     <MDBTypography tag='h1' variant="h3" className="pt-5 pb-4" >Employee Directory</MDBTypography>
-                    <MDBCard className="p-3 mb-3" style={{ color: "#2d2d2d", backgroundColor: "f7f6f0", boxShadow: "none", border: "1px solid #dddcd6" }}>
+                    <MDBCard className="p-3 mb-3" style={{ color: "#00796b", backgroundColor: "f7f6f0", boxShadow: "none", border: "1px solid #004c40" }}>
                         <EmployeeGrid />
                     </MDBCard>
                 </MDBCol>
