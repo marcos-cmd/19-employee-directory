@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+import { MDBDataTable } from 'mdbreact';
 import API from '../utils/API';
 
 const sortModel = [
@@ -9,50 +9,64 @@ const sortModel = [
     },
 ];
 
-const columns = [
-    { field: "id", headerName: "ID", width: 70 },
-    {
-        field: "avatar", headerName: "Avatar", width: 100,
-        renderCell: (params) => (
-            <img src={params.value} alt="avatar" />
-        )
-    },
-    { field: "name", headerName: "Name", width: 170 },
-    { field: "gender", headerName: "Gender", width: 110 },
-    { field: "phone", headerName: "Phone", width: 140 },
-    { field: "email", headerName: "Email", width: 250 },
-    { field: "dob", headerName: "Date of Birth", width: 180 },
-    { field: "address", headerName: "Address", width: 370 },
-];
-
-export const EmployeeGrid = () => {
+export const EmployeeGrid = (props) => {
+    const [rows, setRows] = useState([]);
     const [employees, setEmployees] = useState([])
     const getEmployees = async () => {
         const response = await API.get("/?results=100&seed=employee&nat=us");
-        const newArr = []
-        let employeeId = response.data.results.length
-        response.data.results.forEach(({ name, picture, gender, phone, email, dob, location }) => {
+        const newArr = [];
+        console.log(response.data.results);
+        response.data.results.forEach(({ name, picture, gender, phone, email, dob, location }, index) => {
             newArr.push({
-                id: employeeId--,
-                avatar: picture.thumbnail,
-                name: `${name.first} ${name.last}`,
+                id: index + 1,
+                picture: <img src={picture.thumbnail} alt="profilepic" className="img-fluid z-depth-1" />,
+                first: name.first,
+                last: name.last,
                 gender,
                 phone,
                 email,
                 dob: dob.date.replace(/T.*/, ''),
-                address: `${location.street.number} ${location.street.name}, ${location.city}, ${location.state} ${location.postcode}`
+                street: `${location.street.number} ${location.street.name}`,
+                city: `${location.city}`,
+                state: `${location.state}`,
+                postcode: `${location.postcode}`
             })
         });
-        setEmployees(newArr)
+        setRows(newArr);
     }
 
     useEffect(() => {
-        getEmployees();
+        getEmployees()
     }, [])
 
+    const datatable = {
+        columns: [
+            { field: 'id', label: 'ID', width: 75 },
+            { field: 'picture', label: 'Picture', width: 75 },
+            { field: 'first', label: 'First Name', width: 130 },
+            { field: 'last', label: 'Last Name', width: 130 },
+            { field: 'gender', label: 'Gender', width: 110 },
+            { field: 'phone', label: 'Phone', width: 140 },
+            { field: 'email', label: 'E-mail', width: 250 },
+            { field: 'dob', label: 'Date of Birth', width: 140 },
+            { field: 'street', label: 'Street', width: 190 },
+            { field: 'city', label: 'City', width: 130 },
+            { field: 'state', label: 'State', width: 140 },
+            { field: 'postcode', label: 'Postal Code', width: 140 },
+        ],
+        rows: rows,
+    };
+
     return (
-        <div style={{ height: "100vh", width: '100%' }}>
-            <DataGrid sortModel={sortModel} rows={employees} columns={columns} />
-        </div>
-    );
+
+        <MDBDataTable
+            hover
+            autoWidth
+            striped
+            bordered
+            entriesOptions={[15, 30, 50, 100]}
+            entries={15}
+            pagesAmount={5}
+            data={datatable}
+        />)
 }
