@@ -13,15 +13,15 @@ The user is able to:
 ## Demo
 
 See the responsive table below: 
-![] (assets/demo.gif)
+![Demo] (./assets/demo.gif)
 
 Users can sort the employees by column:
-![] (assets/sort-demo.gif)
+![SortDemo] (./assets/sort-demo.gif)
 
 Users can scroll horizontally to see more columns:
-![] (assets/scroll-demo.gif)
+![ScrollDemo] (./assets/scroll-demo.gif)
 
 Users can filter the table with the search bar: 
-![] (assets/search-demo.gif)
+![SearchDemo] (./assets/search-demo.gif)
 
 
