@@ -1,10 +1,10 @@
 import React from 'react';
-import { EmployeeGrid } from "./components/Grid";
+import DirectoryPage from './components/pages/Directory';
 
 const App = () => {
   return (
     <div>
-      <EmployeeGrid />
+      <DirectoryPage />
     </div>
   )
 }

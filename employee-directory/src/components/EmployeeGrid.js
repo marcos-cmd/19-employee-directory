@@ -2,13 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { MDBDataTable } from 'mdbreact';
 import API from '../utils/API';
 
-const sortModel = [
-    {
-        field: 'id',
-        sort: 'asc',
-    },
-];
-
 export const EmployeeGrid = (props) => {
     const [rows, setRows] = useState([]);
     const [employees, setEmployees] = useState([])
@@ -65,6 +58,7 @@ export const EmployeeGrid = (props) => {
             striped
             bordered
             entriesOptions={[15, 30, 50, 100]}
+            className="primary"
             entries={15}
             pagesAmount={5}
             data={datatable}
