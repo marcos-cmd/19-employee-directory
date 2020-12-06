@@ -61,7 +61,7 @@ export const EmployeeGrid = (props) => {
 
         <MDBDataTable
             hover
-            autoWidth
+            responsive
             striped
             bordered
             entriesOptions={[15, 30, 50, 100]}
